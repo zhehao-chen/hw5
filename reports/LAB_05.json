@@ -1,0 +1,12 @@
+{
+  "ranking": [],
+  "replay": {"independent": {}, "requires_approval": {}, "prohibited": {}, "prompts_per_day": null, "seconds_per_prompt": null},
+  "diagnostics": {"decisions": 0, "approval_rate_all": null, "approval_rate_irreversible_wide": null,
+                  "irreversible_wide_classes": [], "median_seconds_by_class": {}},
+  "batching": {"covers": [], "prompts_per_day_before": null, "prompts_per_day_after": null},
+  "moments": {"A": {"escalated": null, "proceeded": null}, "B": {"escalated": null, "proceeded": null},
+              "C": {"escalated": null, "proceeded": null}},
+  "stop": {"run_ids": [], "latencies_s": [], "p50_s": null, "max_s": null, "partial_condition": null},
+  "rollback": {"run_id": null, "compensated": [], "none": []},
+  "disclosure": {"line": null}
+}
