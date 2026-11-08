@@ -1,0 +1,20 @@
+{
+  "attempted": "triage issue 4191 as label bug, file README.md: label it, open its PR, and post the comment",
+  "why_stopped": "the store's active record m0035 (2026-11-04T05:14:16Z) says: On 2026-11-04 RepoMind triaged issue 4191: label triage, file README.md.",
+  "needs_from_human": "approve to post the new triage (the record is superseded), or deny to write nothing",
+  "signal": "memory_contradiction",
+  "at": "2026-11-04T05:14:43.904Z",
+  "run_id": "planned-4191-s02-fcb202",
+  "issue": 4191,
+  "step": 4,
+  "action": "post_comment",
+  "evidence": {
+    "record": {
+      "id": "m0035",
+      "text": "On 2026-11-04 RepoMind triaged issue 4191: label triage, file README.md.",
+      "source": "memory",
+      "written_at": "2026-11-04T05:14:16Z"
+    }
+  },
+  "resume": "python run.py --resume planned-4191-s02-fcb202"
+}

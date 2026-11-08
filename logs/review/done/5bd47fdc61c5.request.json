@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4333-s01-11b8de",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4333",
+  "branch": "repomind/issue-4333",
+  "title": "Document additional response fields for GET /uploads/:id",
+  "body": "File: docs/API.md\n\nThe API reference for the endpoint `GET /uploads/:id` needs to be updated to include additional fields returned in the response. Specifically, the response also carries `id`, `filename`, `createdAt`, and `finishedAt`, which should be documented alongside the existing fields."
+ },
+ "facts": {
+  "issue": 4333,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4333",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4333,
+ "request_id": "5bd47fdc61c5",
+ "asked_at": "2026-11-04T04:53:37.675Z"
+}

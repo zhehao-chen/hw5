@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4332-s01-e9369e",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4332",
+  "branch": "repomind/issue-4332",
+  "title": "Update help centre article on statement formats",
+  "body": "File: docs/help_center/preparing_your_bank_statement.md\n\nUpdate the article to reflect the current upload form and remove any references to the old import screen and the /import address, as new colleagues are getting lost following outdated information."
+ },
+ "facts": {
+  "issue": 4332,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4332",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4332,
+ "request_id": "6ebc3db8a412",
+ "asked_at": "2026-11-04T04:50:28.045Z"
+}

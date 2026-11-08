@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4331-s01-babded",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4331",
+  "branch": "repomind/issue-4331",
+  "title": "Neutralise CSV exports for descriptions starting with special characters",
+  "body": "File: docs/API.md\n\nCSV exports should neutralise text values that start with '=', '+', '-', or '@', to prevent them from being treated as formulas when opened in Excel or Google Sheets. This change will ensure that descriptions do not trigger formula interpretation in spreadsheet applications."
+ },
+ "facts": {
+  "issue": 4331,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4331",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4331,
+ "request_id": "78cb091194cd",
+ "asked_at": "2026-11-04T04:50:16.625Z"
+}

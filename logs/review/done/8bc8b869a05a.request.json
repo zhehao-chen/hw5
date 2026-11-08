@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4335-s01-1e61c5",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4335",
+  "branch": "repomind/issue-4335",
+  "title": "Translate Report Table column headings to French",
+  "body": "File: src/components/ReportTable.tsx\n\nChange the column headings of the transactions table to be displayed in French when the user's profile language is set to French, ensuring that users in French locales have a consistent language experience throughout the report page."
+ },
+ "facts": {
+  "issue": 4335,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4335",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4335,
+ "request_id": "8bc8b869a05a",
+ "asked_at": "2026-11-04T04:53:44.345Z"
+}

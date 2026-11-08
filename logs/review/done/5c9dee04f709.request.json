@@ -1,0 +1,24 @@
+{
+ "run_id": "planned-4340-s01-87cf79",
+ "action": "post_comment",
+ "action_class": "post_comment/human_quiet",
+ "args": {
+  "issue": "issue-4340",
+  "body": "label: triage\nfile: README.md\n\nWritten by RepoMind, an automated AI agent, not a person. To reach a person, mention a Ledgerline maintainer in a reply.\n\nThis is a note regarding the changes made for issue-4340."
+ },
+ "facts": {
+  "issue": 4340,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": null,
+  "branch_protected": null,
+  "base": null,
+  "target_created_by_agent": false,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4340,
+ "request_id": "5c9dee04f709",
+ "asked_at": "2026-11-04T04:58:36.789Z"
+}

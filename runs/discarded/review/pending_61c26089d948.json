@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4305-s01-933262",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4305",
+  "branch": "repomind/issue-4305",
+  "title": "Allow users to change their email address for account logins",
+  "body": "File: $fill\n\n$fill"
+ },
+ "facts": {
+  "issue": 4305,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4305",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4305,
+ "request_id": "61c26089d948",
+ "asked_at": "2026-11-04T04:06:35.721Z"
+}

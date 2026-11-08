@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""bin/rollback <run_id> [--json]: undo what one run wrote, newest first (Lecture 5, slide 39).
+
+For every write the remote took from the run, newest first, it applies the compensation
+the mock remote exposes: remove_label for a label, close_pr for a pull request,
+reopen_issue for a closed issue. A comment, a push and a merge have none: it prints
+"none" and leaves them in place. A comment once read cannot be taken back.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from harness.tracker import RemoteRefused, Tracker  # noqa: E402
+
+HAPPENED = ("written", "timeout_after_commit")      # a write that reached the remote
+UNDO = {"apply_label": ("label", "remove_label"), "open_pr": ("pr", "close_pr"),
+        "close_issue": ("close", "reopen_issue")}
+COMPENSATIONS = {by for _, by in UNDO.values()}
+
+
+def rollback(run_id: str, remote: Tracker) -> dict:
+    out = {"run_id": run_id, "compensated": [], "none": [], "already": []}
+    writes = [w for w in remote.log(run_id) if w["outcome"] in HAPPENED and w["action"] not in COMPENSATIONS]
+    for w in reversed(writes):
+        action, target = w["action"], w["target"]
+        if action not in UNDO:
+            out["none"].append({"action": action, "target": target})
+            print(f"none          {action:<13} {target}   (no compensation exists; it stays)")
+            continue
+        kind, by = UNDO[action]
+        row = remote.by_key(run_id, kind, w["key"])
+        if row is None:
+            out["already"].append({"action": action, "target": target, "why": "no row with its key"})
+            print(f"skipped       {action:<13} {target}   (the remote has no row with its key)")
+            continue
+        try:
+            getattr(remote, by)(run_id, row["id"])
+        except RemoteRefused as exc:
+            out["already"].append({"action": action, "target": target, "why": str(exc)})
+            print(f"skipped       {action:<13} {target}   ({exc})")
+            continue
+        out["compensated"].append({"action": action, "target": target, "by": by})
+        print(f"{by:<13} {action:<13} {target}")
+    return out
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("run_id")
+    p.add_argument("--json", action="store_true", help="also print the summary as one JSON object, last")
+    a = p.parse_args(argv)
+    remote = Tracker()
+    if not remote.log(a.run_id):
+        print(f"{a.run_id}: the remote has no write from this run", file=sys.stderr)
+        return 1
+    out = rollback(a.run_id, remote)
+    print(f"\n{len(out['compensated'])} undone, {len(out['none'])} with no compensation (none)")
+    if a.json:
+        print(json.dumps(out))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

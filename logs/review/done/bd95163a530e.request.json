@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4320-s01-410203",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4320",
+  "branch": "repomind/issue-4320",
+  "title": "Add option to choose scheduled export send time",
+  "body": "File: src/export/scheduler.ts\n\nThis feature allows users to choose the time of day a scheduled export is sent in the report owner's time zone, addressing the concerns regarding current default send time at 06:00 UTC."
+ },
+ "facts": {
+  "issue": 4320,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": 51.1,
+  "label": null,
+  "branch": "repomind/issue-4320",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4320,
+ "request_id": "bd95163a530e",
+ "asked_at": "2026-11-04T04:31:09.159Z"
+}

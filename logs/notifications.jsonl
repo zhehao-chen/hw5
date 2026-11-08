@@ -1,0 +1,97 @@
+{"at": "2026-11-04T03:45:30.003Z", "kind": "live", "run_id": "planned-4501-s01-4b8207", "text": "RepoMind is running on issue 4501; stop it with bin/stop planned-4501-s01-4b8207", "issue": 4501}
+{"at": "2026-11-04T03:45:30.647Z", "kind": "escalation", "run_id": "planned-4501-s01-4b8207", "text": "RepoMind stopped to ask on issue 4501: this run's own tests failed on repomind/issue-4501: toDelimited > puts date first (3.2.0 column order)"}
+{"at": "2026-11-04T03:45:30.820Z", "kind": "live", "run_id": "planned-4502-s01-938e4e", "text": "RepoMind is running on issue 4502; stop it with bin/stop planned-4502-s01-938e4e", "issue": 4502}
+{"at": "2026-11-04T03:45:31.404Z", "kind": "live", "run_id": "planned-4503-s01-8cd821", "text": "RepoMind is running on issue 4503; stop it with bin/stop planned-4503-s01-8cd821", "issue": 4503}
+{"at": "2026-11-04T03:45:31.932Z", "kind": "live", "run_id": "planned-4501-s01-666cbb", "text": "RepoMind is running on issue 4501; stop it with bin/stop planned-4501-s01-666cbb", "issue": 4501}
+{"at": "2026-11-04T03:45:32.356Z", "kind": "held", "run_id": "planned-4501-s01-666cbb", "text": "run held on issue 4501: pulls_open waited for a reviewer who did not answer. Answer, then: python run.py --resume planned-4501-s01-666cbb"}
+{"at": "2026-11-04T03:45:32.465Z", "kind": "live", "run_id": "planned-4501-s01-666cbb", "text": "RepoMind is running on issue 4501; stop it with bin/stop planned-4501-s01-666cbb", "issue": 4501}
+{"at": "2026-11-04T03:45:32.707Z", "kind": "escalation", "run_id": "planned-4501-s01-666cbb", "text": "RepoMind stopped to ask on issue 4501: this run's own tests failed on repomind/issue-4501: toDelimited > puts date first (3.2.0 column order)"}
+{"at": "2026-11-04T04:11:45.386Z", "kind": "live", "run_id": "planned-4191-s01-14d599", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s01-14d599", "issue": 4191}
+{"at": "2026-11-04T04:19:34.182Z", "kind": "live", "run_id": "planned-4303-s01-49d5a5", "text": "RepoMind is running on issue 4303; stop it with bin/stop planned-4303-s01-49d5a5", "issue": 4303}
+{"at": "2026-11-04T04:19:34.182Z", "kind": "live", "run_id": "planned-4301-s01-404168", "text": "RepoMind is running on issue 4301; stop it with bin/stop planned-4301-s01-404168", "issue": 4301}
+{"at": "2026-11-04T04:19:34.182Z", "kind": "live", "run_id": "planned-4302-s01-1140f4", "text": "RepoMind is running on issue 4302; stop it with bin/stop planned-4302-s01-1140f4", "issue": 4302}
+{"at": "2026-11-04T04:19:34.182Z", "kind": "live", "run_id": "planned-4304-s01-807bbc", "text": "RepoMind is running on issue 4304; stop it with bin/stop planned-4304-s01-807bbc", "issue": 4304}
+{"at": "2026-11-04T04:19:45.218Z", "kind": "live", "run_id": "planned-4305-s01-692bb6", "text": "RepoMind is running on issue 4305; stop it with bin/stop planned-4305-s01-692bb6", "issue": 4305}
+{"at": "2026-11-04T04:21:06.551Z", "kind": "live", "run_id": "planned-4306-s01-a491d5", "text": "RepoMind is running on issue 4306; stop it with bin/stop planned-4306-s01-a491d5", "issue": 4306}
+{"at": "2026-11-04T04:21:39.740Z", "kind": "live", "run_id": "planned-4307-s01-4e39ca", "text": "RepoMind is running on issue 4307; stop it with bin/stop planned-4307-s01-4e39ca", "issue": 4307}
+{"at": "2026-11-04T04:21:45.328Z", "kind": "live", "run_id": "planned-4308-s01-c85fa8", "text": "RepoMind is running on issue 4308; stop it with bin/stop planned-4308-s01-c85fa8", "issue": 4308}
+{"at": "2026-11-04T04:22:01.822Z", "kind": "live", "run_id": "planned-4309-s01-9acfeb", "text": "RepoMind is running on issue 4309; stop it with bin/stop planned-4309-s01-9acfeb", "issue": 4309}
+{"at": "2026-11-04T04:22:24.576Z", "kind": "live", "run_id": "planned-4310-s01-e028f3", "text": "RepoMind is running on issue 4310; stop it with bin/stop planned-4310-s01-e028f3", "issue": 4310}
+{"at": "2026-11-04T04:22:39.340Z", "kind": "live", "run_id": "planned-4311-s01-4b9c72", "text": "RepoMind is running on issue 4311; stop it with bin/stop planned-4311-s01-4b9c72", "issue": 4311}
+{"at": "2026-11-04T04:23:07.452Z", "kind": "live", "run_id": "planned-4312-s01-379a8a", "text": "RepoMind is running on issue 4312; stop it with bin/stop planned-4312-s01-379a8a", "issue": 4312}
+{"at": "2026-11-04T04:24:22.271Z", "kind": "live", "run_id": "planned-4313-s01-672a6f", "text": "RepoMind is running on issue 4313; stop it with bin/stop planned-4313-s01-672a6f", "issue": 4313}
+{"at": "2026-11-04T04:25:20.490Z", "kind": "live", "run_id": "planned-4314-s01-43a1f3", "text": "RepoMind is running on issue 4314; stop it with bin/stop planned-4314-s01-43a1f3", "issue": 4314}
+{"at": "2026-11-04T04:27:40.652Z", "kind": "live", "run_id": "planned-4315-s01-e26c66", "text": "RepoMind is running on issue 4315; stop it with bin/stop planned-4315-s01-e26c66", "issue": 4315}
+{"at": "2026-11-04T04:28:00.296Z", "kind": "live", "run_id": "planned-4316-s01-cae2cb", "text": "RepoMind is running on issue 4316; stop it with bin/stop planned-4316-s01-cae2cb", "issue": 4316}
+{"at": "2026-11-04T04:28:07.993Z", "kind": "live", "run_id": "planned-4317-s01-3aa277", "text": "RepoMind is running on issue 4317; stop it with bin/stop planned-4317-s01-3aa277", "issue": 4317}
+{"at": "2026-11-04T04:28:14.582Z", "kind": "live", "run_id": "planned-4318-s01-6ceb0e", "text": "RepoMind is running on issue 4318; stop it with bin/stop planned-4318-s01-6ceb0e", "issue": 4318}
+{"at": "2026-11-04T04:28:24.902Z", "kind": "live", "run_id": "planned-4319-s01-44b85e", "text": "RepoMind is running on issue 4319; stop it with bin/stop planned-4319-s01-44b85e", "issue": 4319}
+{"at": "2026-11-04T04:31:00.551Z", "kind": "live", "run_id": "planned-4320-s01-410203", "text": "RepoMind is running on issue 4320; stop it with bin/stop planned-4320-s01-410203", "issue": 4320}
+{"at": "2026-11-04T04:33:02.297Z", "kind": "live", "run_id": "planned-4321-s01-9783bb", "text": "RepoMind is running on issue 4321; stop it with bin/stop planned-4321-s01-9783bb", "issue": 4321}
+{"at": "2026-11-04T04:34:31.987Z", "kind": "live", "run_id": "planned-4322-s01-f89ed1", "text": "RepoMind is running on issue 4322; stop it with bin/stop planned-4322-s01-f89ed1", "issue": 4322}
+{"at": "2026-11-04T04:36:18.875Z", "kind": "live", "run_id": "planned-4323-s01-36e151", "text": "RepoMind is running on issue 4323; stop it with bin/stop planned-4323-s01-36e151", "issue": 4323}
+{"at": "2026-11-04T04:38:02.672Z", "kind": "live", "run_id": "planned-4324-s01-13f2ff", "text": "RepoMind is running on issue 4324; stop it with bin/stop planned-4324-s01-13f2ff", "issue": 4324}
+{"at": "2026-11-04T04:41:18.330Z", "kind": "live", "run_id": "planned-4325-s01-b39e21", "text": "RepoMind is running on issue 4325; stop it with bin/stop planned-4325-s01-b39e21", "issue": 4325}
+{"at": "2026-11-04T04:44:16.336Z", "kind": "live", "run_id": "planned-4326-s01-128e7e", "text": "RepoMind is running on issue 4326; stop it with bin/stop planned-4326-s01-128e7e", "issue": 4326}
+{"at": "2026-11-04T04:44:36.640Z", "kind": "live", "run_id": "planned-4327-s01-27aea7", "text": "RepoMind is running on issue 4327; stop it with bin/stop planned-4327-s01-27aea7", "issue": 4327}
+{"at": "2026-11-04T04:45:27.239Z", "kind": "live", "run_id": "planned-4328-s01-962911", "text": "RepoMind is running on issue 4328; stop it with bin/stop planned-4328-s01-962911", "issue": 4328}
+{"at": "2026-11-04T04:49:51.481Z", "kind": "live", "run_id": "planned-4329-s01-4af162", "text": "RepoMind is running on issue 4329; stop it with bin/stop planned-4329-s01-4af162", "issue": 4329}
+{"at": "2026-11-04T04:50:02.058Z", "kind": "live", "run_id": "planned-4330-s01-d14e79", "text": "RepoMind is running on issue 4330; stop it with bin/stop planned-4330-s01-d14e79", "issue": 4330}
+{"at": "2026-11-04T04:50:08.132Z", "kind": "live", "run_id": "planned-4331-s01-babded", "text": "RepoMind is running on issue 4331; stop it with bin/stop planned-4331-s01-babded", "issue": 4331}
+{"at": "2026-11-04T04:50:12.791Z", "kind": "live", "run_id": "planned-4332-s01-e9369e", "text": "RepoMind is running on issue 4332; stop it with bin/stop planned-4332-s01-e9369e", "issue": 4332}
+{"at": "2026-11-04T04:53:26.124Z", "kind": "live", "run_id": "planned-4333-s01-11b8de", "text": "RepoMind is running on issue 4333; stop it with bin/stop planned-4333-s01-11b8de", "issue": 4333}
+{"at": "2026-11-04T04:53:27.806Z", "kind": "live", "run_id": "planned-4334-s01-9dae1c", "text": "RepoMind is running on issue 4334; stop it with bin/stop planned-4334-s01-9dae1c", "issue": 4334}
+{"at": "2026-11-04T04:53:29.739Z", "kind": "live", "run_id": "planned-4335-s01-1e61c5", "text": "RepoMind is running on issue 4335; stop it with bin/stop planned-4335-s01-1e61c5", "issue": 4335}
+{"at": "2026-11-04T04:53:34.041Z", "kind": "live", "run_id": "planned-4336-s01-e2a895", "text": "RepoMind is running on issue 4336; stop it with bin/stop planned-4336-s01-e2a895", "issue": 4336}
+{"at": "2026-11-04T04:53:41.735Z", "kind": "live", "run_id": "planned-4337-s01-76403b", "text": "RepoMind is running on issue 4337; stop it with bin/stop planned-4337-s01-76403b", "issue": 4337}
+{"at": "2026-11-04T04:53:50.579Z", "kind": "live", "run_id": "planned-4338-s01-fd596d", "text": "RepoMind is running on issue 4338; stop it with bin/stop planned-4338-s01-fd596d", "issue": 4338}
+{"at": "2026-11-04T04:55:59.497Z", "kind": "live", "run_id": "planned-4339-s01-d0032c", "text": "RepoMind is running on issue 4339; stop it with bin/stop planned-4339-s01-d0032c", "issue": 4339}
+{"at": "2026-11-04T04:56:52.243Z", "kind": "live", "run_id": "planned-4340-s01-87cf79", "text": "RepoMind is running on issue 4340; stop it with bin/stop planned-4340-s01-87cf79", "issue": 4340}
+{"at": "2026-11-04T05:09:24.259Z", "kind": "live", "run_id": "planned-4191-s01-5afc84", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s01-5afc84", "issue": 4191}
+{"at": "2026-11-04T05:09:37.824Z", "kind": "live", "run_id": "planned-4192-s01-f44fee", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s01-f44fee", "issue": 4192}
+{"at": "2026-11-04T05:09:50.805Z", "kind": "stopped", "run_id": "planned-4192-s01-f44fee", "text": "run stopped on issue 4192; resume it with python run.py --resume planned-4192-s01-f44fee"}
+{"at": "2026-11-04T05:09:50.819Z", "kind": "live", "run_id": "planned-4191-s02-91ea16", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s02-91ea16", "issue": 4191}
+{"at": "2026-11-04T05:10:03.825Z", "kind": "stopped", "run_id": "planned-4191-s02-91ea16", "text": "run stopped on issue 4191; resume it with python run.py --resume planned-4191-s02-91ea16"}
+{"at": "2026-11-04T05:10:03.832Z", "kind": "live", "run_id": "planned-4192-s02-9caecc", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s02-9caecc", "issue": 4192}
+{"at": "2026-11-04T05:10:16.387Z", "kind": "live", "run_id": "planned-4191-s03-456be7", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s03-456be7", "issue": 4191}
+{"at": "2026-11-04T05:10:33.427Z", "kind": "live", "run_id": "planned-4192-s03-088d38", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s03-088d38", "issue": 4192}
+{"at": "2026-11-04T05:10:50.325Z", "kind": "stopped", "run_id": "planned-4192-s03-088d38", "text": "run stopped on issue 4192; resume it with python run.py --resume planned-4192-s03-088d38"}
+{"at": "2026-11-04T05:10:50.340Z", "kind": "live", "run_id": "planned-4191-s04-84e40e", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s04-84e40e", "issue": 4191}
+{"at": "2026-11-04T05:11:02.172Z", "kind": "live", "run_id": "planned-4192-s04-9b6271", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s04-9b6271", "issue": 4192}
+{"at": "2026-11-04T05:11:17.955Z", "kind": "stopped", "run_id": "planned-4192-s04-9b6271", "text": "run stopped on issue 4192; resume it with python run.py --resume planned-4192-s04-9b6271"}
+{"at": "2026-11-04T05:11:17.967Z", "kind": "live", "run_id": "planned-4191-s05-488048", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s05-488048", "issue": 4191}
+{"at": "2026-11-04T05:11:29.350Z", "kind": "live", "run_id": "planned-4192-s05-2ae059", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s05-2ae059", "issue": 4192}
+{"at": "2026-11-04T05:12:33.485Z", "kind": "live", "run_id": "planned-4192-s01-f44fee", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s01-f44fee", "issue": 4192}
+{"at": "2026-11-04T05:12:38.351Z", "kind": "live", "run_id": "planned-4191-s02-91ea16", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s02-91ea16", "issue": 4191}
+{"at": "2026-11-04T05:12:38.448Z", "kind": "live", "run_id": "planned-4191-s02-91ea16", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s02-91ea16", "issue": 4191}
+{"at": "2026-11-04T05:12:46.194Z", "kind": "live", "run_id": "planned-4192-s03-088d38", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s03-088d38", "issue": 4192}
+{"at": "2026-11-04T05:12:46.589Z", "kind": "live", "run_id": "planned-4192-s03-088d38", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s03-088d38", "issue": 4192}
+{"at": "2026-11-04T05:12:50.533Z", "kind": "live", "run_id": "planned-4192-s04-9b6271", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s04-9b6271", "issue": 4192}
+{"at": "2026-11-04T05:12:50.562Z", "kind": "live", "run_id": "planned-4192-s04-9b6271", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s04-9b6271", "issue": 4192}
+{"at": "2026-11-04T05:14:06.391Z", "kind": "live", "run_id": "planned-4191-s01-c18f36", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s01-c18f36", "issue": 4191}
+{"at": "2026-11-04T05:14:16.729Z", "kind": "escalation", "run_id": "planned-4191-s01-c18f36", "text": "RepoMind stopped to ask on issue 4191: the store's active record m0006 (2026-11-04T04:12:02Z) says: On 2026-11-04 RepoMind triaged issue 4191: label docs, file README.md."}
+{"at": "2026-11-04T05:14:16.924Z", "kind": "live", "run_id": "planned-4192-s01-dfec70", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s01-dfec70", "issue": 4192}
+{"at": "2026-11-04T05:14:34.845Z", "kind": "live", "run_id": "planned-4191-s02-fcb202", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s02-fcb202", "issue": 4191}
+{"at": "2026-11-04T05:14:43.906Z", "kind": "escalation", "run_id": "planned-4191-s02-fcb202", "text": "RepoMind stopped to ask on issue 4191: the store's active record m0035 (2026-11-04T05:14:16Z) says: On 2026-11-04 RepoMind triaged issue 4191: label triage, file README.md."}
+{"at": "2026-11-04T05:14:45.376Z", "kind": "live", "run_id": "planned-4192-s02-a296f0", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s02-a296f0", "issue": 4192}
+{"at": "2026-11-04T05:14:56.718Z", "kind": "live", "run_id": "planned-4191-s03-193e5d", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s03-193e5d", "issue": 4191}
+{"at": "2026-11-04T05:15:00.596Z", "kind": "stopped", "run_id": "planned-4191-s03-193e5d", "text": "run stopped on issue 4191; resume it with python run.py --resume planned-4191-s03-193e5d"}
+{"at": "2026-11-04T05:15:00.603Z", "kind": "live", "run_id": "planned-4192-s03-27175a", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s03-27175a", "issue": 4192}
+{"at": "2026-11-04T05:15:12.235Z", "kind": "stopped", "run_id": "planned-4192-s03-27175a", "text": "run stopped on issue 4192; resume it with python run.py --resume planned-4192-s03-27175a"}
+{"at": "2026-11-04T05:15:12.244Z", "kind": "live", "run_id": "planned-4191-s04-686198", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s04-686198", "issue": 4191}
+{"at": "2026-11-04T05:15:20.854Z", "kind": "stopped", "run_id": "planned-4191-s04-686198", "text": "run stopped on issue 4191; resume it with python run.py --resume planned-4191-s04-686198"}
+{"at": "2026-11-04T05:15:20.863Z", "kind": "live", "run_id": "planned-4192-s04-4e9d7e", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s04-4e9d7e", "issue": 4192}
+{"at": "2026-11-04T05:15:25.250Z", "kind": "stopped", "run_id": "planned-4192-s04-4e9d7e", "text": "run stopped on issue 4192; resume it with python run.py --resume planned-4192-s04-4e9d7e"}
+{"at": "2026-11-04T05:15:25.256Z", "kind": "live", "run_id": "planned-4191-s05-54f7d9", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s05-54f7d9", "issue": 4191}
+{"at": "2026-11-04T05:15:29.765Z", "kind": "stopped", "run_id": "planned-4191-s05-54f7d9", "text": "run stopped on issue 4191; resume it with python run.py --resume planned-4191-s05-54f7d9"}
+{"at": "2026-11-04T05:15:29.778Z", "kind": "live", "run_id": "planned-4192-s05-51264e", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s05-51264e", "issue": 4192}
+{"at": "2026-11-04T05:15:40.994Z", "kind": "live", "run_id": "planned-4191-s06-be2d24", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s06-be2d24", "issue": 4191}
+{"at": "2026-11-04T05:15:44.851Z", "kind": "stopped", "run_id": "planned-4191-s06-be2d24", "text": "run stopped on issue 4191; resume it with python run.py --resume planned-4191-s06-be2d24"}
+{"at": "2026-11-04T05:15:44.857Z", "kind": "live", "run_id": "planned-4192-s06-241758", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s06-241758", "issue": 4192}
+{"at": "2026-11-04T05:16:04.524Z", "kind": "live", "run_id": "planned-4191-s03-193e5d", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s03-193e5d", "issue": 4191}
+{"at": "2026-11-04T05:16:12.979Z", "kind": "live", "run_id": "planned-4192-s03-27175a", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s03-27175a", "issue": 4192}
+{"at": "2026-11-04T05:16:26.930Z", "kind": "live", "run_id": "planned-4191-s04-686198", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s04-686198", "issue": 4191}
+{"at": "2026-11-04T05:16:30.319Z", "kind": "live", "run_id": "planned-4192-s04-4e9d7e", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s04-4e9d7e", "issue": 4192}
+{"at": "2026-11-04T05:16:43.035Z", "kind": "live", "run_id": "planned-4191-s05-54f7d9", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s05-54f7d9", "issue": 4191}
+{"at": "2026-11-04T05:16:51.666Z", "kind": "live", "run_id": "planned-4191-s06-be2d24", "text": "RepoMind is running on issue 4191; stop it with bin/stop planned-4191-s06-be2d24", "issue": 4191}
+{"at": "2026-11-04T05:16:59.331Z", "kind": "live", "run_id": "planned-4192-s06-241758", "text": "RepoMind is running on issue 4192; stop it with bin/stop planned-4192-s06-241758", "issue": 4192}

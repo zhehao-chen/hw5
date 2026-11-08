@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4304-s01-807bbc",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4304",
+  "branch": "repomind/issue-4304",
+  "title": "Fix hourly purge of failed uploads to ensure items are deleted correctly",
+  "body": "File: src/ingest/worker.ts\n\nThis change corrects the logic in the purgeExpiredFailedUploads function to handle access errors properly. Previously, a failure due to AccessDenied would prevent further uploads from being purged, but now the function will log the error and continue processing other items."
+ },
+ "facts": {
+  "issue": 4304,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4304",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4304,
+ "request_id": "2253d12332bf",
+ "asked_at": "2026-11-04T04:19:42.891Z"
+}

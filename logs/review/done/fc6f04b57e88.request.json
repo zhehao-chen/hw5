@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4321-s01-9783bb",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4321",
+  "branch": "repomind/issue-4321",
+  "title": "Fix French translations for export control",
+  "body": "File: src/export/\n\nThe export button and its messages currently display English text on French pages. This change will ensure that the French translations from the catalog are correctly used for the export button and associated messages."
+ },
+ "facts": {
+  "issue": 4321,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4321",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4321,
+ "request_id": "fc6f04b57e88",
+ "asked_at": "2026-11-04T04:33:17.577Z"
+}

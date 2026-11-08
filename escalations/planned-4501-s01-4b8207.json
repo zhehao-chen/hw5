@@ -1,0 +1,18 @@
+{
+  "attempted": "push a commit to repomind/issue-4501, the branch of this run's own pull request",
+  "why_stopped": "this run's own tests failed on repomind/issue-4501: toDelimited > puts date first (3.2.0 column order)",
+  "needs_from_human": "push anyway (approve), or do not push and leave the pull request for a person to fix (deny)",
+  "signal": "failed_verification",
+  "at": "2026-11-04T03:45:30.644Z",
+  "run_id": "planned-4501-s01-4b8207",
+  "issue": 4501,
+  "step": 7,
+  "action": "push_commit",
+  "evidence": {
+    "tests": [
+      "toDelimited > puts date first (3.2.0 column order)"
+    ],
+    "branch": "repomind/issue-4501"
+  },
+  "resume": "python run.py --resume planned-4501-s01-4b8207"
+}

@@ -12,8 +12,13 @@ Assignment 5 changes the task, not the control (checks/FORMATS.md, section 13):
     push_commit, merge_pr or close_issue runs as a read does, its "$fill"
     arguments filled by one model call. The comment still comes once, last, and the
     PR once, before it; steps between the PR and the comment run in order.
-  - Nothing here decides which calls need a person, holds a run, drains the inbox,
-    notifies anyone, or stops: that is Assignment 5's work, yours.
+  - Assignment 5's control, added here: the inbox is drained before every model call
+    (policy/inbox.py); a live notification goes out before the run's first write; a
+    stop (policy/stop.py) ends the run stopped after a checkpoint, and a resume lifts
+    it; a gated call nobody answered holds the run; the run escalates on four named
+    signals (policy/escalation.py) before an action it cannot undo; an empty search
+    is recorded as not_determined; and every comment carries the disclosure line
+    (policy/disclosure.py). Which calls need a person is the hook's (policy/hook.py).
 
 Assignment 4's own account of the way follows.
 
@@ -111,8 +116,14 @@ from agent.diff import step_args
 from agent.plan import SCHEMA, make_plan, revise_plan
 from agent.validator import validate
 from harness.formats import FILL, format_triage_comment, parse_triage_comment, result_paths
-from harness.roles import ALL_ROLES, arg, tool_for
+from harness.notify import notify
+from harness.roles import ALL_ROLES, action_of, arg, tool_for
 from harness.schema import errors as schema_errors
+from policy import stop
+from policy.disclosure import with_line
+from policy.escalation import escalate
+from policy.hook import NO_ANSWER
+from policy.inbox import Draining
 from state.checkpointer import Checkpointer
 from state.store import REPOSITORY, Store
 from tools import Unverifiable
@@ -132,11 +143,20 @@ BURY = "PLANT_BURY"            # Part F, attention: put the fact first, under th
 COMPACT_AT = "REPOMIND_COMPACT_AT"   # Part F, compaction: compact the history past this many tokens
 KEEP = 1                       # turns a compaction keeps as they were
 SUMMARY = "## Summary of the earlier steps"
+REFUSED = "This call was not allowed"   # the registry's prefix for a call a hook refused
+BLOCKED_LIMIT = 3              # Assignment 5: the same step refused this many times escalates
+TRIAGED = re.compile(r"label (\S+), file (\S+?)\.?$")   # an episodic record's triage (remember(), below)
 
 
 def role(name: str | None) -> str | None:
     """The role a step's tool plays, or None."""
     return next((r for r in ALL_ROLES if tool_for(r) == name), None)
+
+
+def unfilled(value) -> bool:
+    """A value the executor must fill: "$fill" anywhere in it. A real model's plan may write a
+    template, such as "label: $fill\nfile: $fill", which must never be posted as it is."""
+    return FILL in str(value)
 
 
 def allows_null(spec: dict) -> bool:
@@ -163,6 +183,11 @@ class Recording:
 
 def run(ctx) -> None:
     conversation: list[dict] = []
+    if stop.lift(ctx.run_id):                     # Assignment 5: this resume lifts the run's stop
+        ctx.trace.event("stop_lifted")
+    notify("live", ctx.run_id, f"RepoMind is running on issue {ctx.issue_number}; stop it with "
+           f"bin/stop {ctx.run_id}", issue=ctx.issue_number)   # before the run's first write: someone knows
+    ctx.client = Draining(ctx.client, ctx)        # Assignment 5: the inbox, drained before every model call
     if os.environ.get(CONVERSATION) == "1":
         ctx.client = Recording(ctx.client, conversation)
     checkpointer = Checkpointer()
@@ -322,12 +347,15 @@ class Executor:
         self.compact_at = int(os.environ[COMPACT_AT]) if os.environ.get(COMPACT_AT) else None   # Part F
         self.summary: str | None = None  # the compaction's summary of the earliest turns, once there is one
         self.summarized = 0              # how many of the earliest turns it replaced
+        self.cleared: set[str] = set()   # Assignment 5: escalations a person approved, saved in each checkpoint
+        self.blocked: dict[str, int] = {}   # hook refusals per plan step, for blocked_three_times
         if restore is not None:
             self.restore(restore)
 
     # -- state: saved after each file read and before each write, and restored on a resume -------
     def findings(self) -> dict:
-        out = {"version": self.version, "revisions": self.revisions, "revised": sorted(self.revised)}
+        out = {"version": self.version, "revisions": self.revisions, "revised": sorted(self.revised),
+               "cleared": sorted(self.cleared)}
         if self.draft is not None:
             label, file = parse_triage_comment(str(self.draft.get(arg("comment", "body"))))
             out.update(label=label, file=file or "none", draft=self.draft)
@@ -363,6 +391,7 @@ class Executor:
         self.version = found.get("version", 1)
         self.revisions = found.get("revisions", 0)
         self.revised = set(found.get("revised") or [])
+        self.cleared = set(found.get("cleared") or [])
         if found.get("draft") is not None:
             self.draft = found["draft"]
             self.drafted_file = found.get("file") or "none"
@@ -380,6 +409,15 @@ class Executor:
             if role(step.get("tool")) in ("apply_label", "open_pr", "comment") and self.draft is None:
                 if not self.prepare(self.comment_step()):
                     return                        # held, or not filled: nothing was written
+            if role(step.get("tool")) in ("apply_label", "open_pr", "comment"):
+                if self.check_memory(step) == "end":
+                    return                        # Assignment 5: escalated before the first write
+            if role(step.get("tool")) == "push_commit":
+                gate = self.verify_before_push(step)
+                if gate == "end":
+                    return                        # held or stopped at the escalation: nothing pushed
+                if gate == "skip":
+                    continue
             if role(step.get("tool")) == "apply_label":
                 if not self.label(step):
                     return
@@ -396,6 +434,11 @@ class Executor:
             result = self.run_step(step)
             if result is None:
                 return                            # halted, and ended escalated
+            if role(step.get("tool")) == "search" and result.get("error_code") == "no_matches":
+                query = (result.get("args") or {}).get(arg("search", "query"))
+                self.ctx.trace.event("not_determined", step=step.get("id"),
+                                     question=f"Which file would the search for {query!r} have named? It matched "
+                                              "nothing, which does not show that no file is involved.")
             if role(step.get("tool")) == "search" and (first or str(step.get("id")) in self.revised):
                 self.checkpoint(CHECKPOINT, any(SOURCE.match(p) for p in result.get("paths") or []))
 
@@ -411,17 +454,155 @@ class Executor:
         return None if result is None else self.record(step, args, result)
 
     def call(self, step: dict, tool: str, args: dict):
-        """One tool call for a plan step; None when the registry could not confirm a
-        write, and the run has ended escalated (the third exit)."""
+        """One tool call for a plan step; None when the run has ended: stopped, held, or
+        escalated (Assignment 5)."""
         try:
-            return self.ctx.call_tool(self.calls, tool, args, plan_step=step.get("id"))
+            result = self.ctx.call_tool(self.calls, tool, args, plan_step=step.get("id"))
         except Unverifiable as exc:
-            self.record(step, args, None, "unverifiable")
-            self.ctx.trace.end("escalated", detail=f"step {step.get('id')}: {exc}; a person on review duty decides")
+            return self.unverifiable(step, tool, args, exc)
+        if result.is_error and stop.is_stopped(self.ctx.run_id):
+            self.halt_stopped(step, f"step {step.get('id')}: {tool} refused, the run is stopped")
             return None
+        if result.is_error and NO_ANSWER in result.content:     # a gated call nobody answered: the run holds
+            self.hold(step, f"{tool} waited for a reviewer who did not answer")
+            return None
+        if result.is_error and result.content.startswith(REFUSED):
+            sid = str(step.get("id"))
+            self.blocked[sid] = self.blocked.get(sid, 0) + 1
+            if self.blocked[sid] >= BLOCKED_LIMIT:
+                self.save_state(step, current=step.get("id"))
+                decision = escalate(
+                    self.ctx, signal="blocked_three_times", step=step.get("id"), action=action_of(tool), args=args,
+                    attempted=f"step {step.get('id')}: {step.get('action') or tool}",
+                    why_stopped=f"the hook refused this step {self.blocked[sid]} times; last: {result.content[:200]}",
+                    needs_from_human="approve to let the run go on without this step, or deny to end the run here",
+                    evidence={"refusal": result.content[:400]})
+                if decision != "approve":
+                    return self.ended(decision, step, "blocked three times")
+        return result
+
+    # -- Assignment 5: how a run ends when it stops, holds, or a person says no ----------------
+    def ended(self, decision: str, step: dict, why: str) -> None:
+        if decision == "stopped":
+            self.halt_stopped(step, f"step {step.get('id')}: the stop withdrew the escalation ({why})")
+        elif decision == "held":
+            self.hold(step, f"step {step.get('id')}: {why}; nobody answered, so nothing proceeds")
+        else:
+            self.ctx.trace.end("escalated", detail=f"step {step.get('id')}: {why}; a person said no")
+        return None
+
+    def hold(self, step: dict, detail: str) -> None:
+        self.save_state(step, current=step.get("id"))
+        self.ctx.trace.end("held", detail=detail)
+        notify("held", self.ctx.run_id, f"run held on issue {self.ctx.issue_number}: {detail}. "
+               f"Answer, then: python run.py --resume {self.ctx.run_id}")
+
+    def halt_stopped(self, step: dict, detail: str) -> None:
+        self.save_state(step, current=step.get("id"))       # the stop's checkpoint, after the last call
+        self.ctx.trace.end("stopped", detail=detail)
+        notify("stopped", self.ctx.run_id, f"run stopped on issue {self.ctx.issue_number}; resume it with "
+               f"python run.py --resume {self.ctx.run_id}")
+
+    def unverifiable(self, step: dict, tool: str, args: dict, exc: Exception):
+        """A write the registry cannot confirm: uninterpretable_result. The run asks a person."""
+        self.save_state(step, current=step.get("id"))
+        decision = escalate(
+            self.ctx, signal="uninterpretable_result", step=step.get("id"), action=action_of(tool), args=args,
+            attempted=f"step {step.get('id')}: {tool} with {json.dumps(args)[:300]}",
+            why_stopped=f"the harness cannot tell whether this write happened: {exc}",
+            needs_from_human="check the remote by hand. Approve to try once more with the same key (it is not "
+                             "repeated if it already happened), or deny to end the run here")
+        if decision == "approve":
+            try:
+                return self.ctx.call_tool(self.calls, tool, args, plan_step=step.get("id"))
+            except Unverifiable as again:
+                exc, decision = again, "deny"
+        if decision == "deny":
+            self.record(step, args, None, "unverifiable")
+        return self.ended(decision, step, f"{tool} could not be confirmed ({exc})")
+
+    def verify_before_push(self, step: dict) -> str:
+        """failed_verification: before a push, which cannot be undone, this run's own tests
+        must not have failed. "go", "skip" (a person said do not push), or "end"."""
+        sid = str(step.get("id"))
+        status, detail = self.tests_status()
+        if status in (None, "passed") or f"verification:{sid}" in self.cleared:
+            return "go"
+        args = step_args(step)
+        branch = args.get(arg("push_commit", "branch"))
+        signal = "failed_verification" if status == "failed" else "uninterpretable_result"
+        why = (f"this run's own tests failed on {branch}: {', '.join(detail)}" if status == "failed"
+               else f"this run's test result on {branch} could not be read: {detail}")
+        self.save_state(step, current=step.get("id"))        # the run's state, saved before it waits
+        decision = escalate(
+            self.ctx, signal=signal, step=step.get("id"), action="push_commit", args=args,
+            attempted=f"push a commit to {branch}, the branch of this run's own pull request",
+            why_stopped=why,
+            needs_from_human="push anyway (approve), or do not push and leave the pull request for a person to fix "
+                             "(deny)",
+            evidence={"tests": detail, "branch": branch})
+        if decision == "approve":
+            self.cleared.add(f"verification:{sid}")
+            return "go"
+        if decision == "deny":
+            self.record(step, args, None, "skipped")
+            self.ctx.trace.event("escalation_answer", step=step.get("id"), decision="deny",
+                                 result="the push is skipped; the pull request stays for a person to fix")
+            return "skip"
+        self.ended(decision, step, why)
+        return "end"
+
+    def tests_status(self) -> tuple[str | None, object]:
+        """The last run_tests result of this run: ("passed" | "failed" | "unknown", detail),
+        or (None, None) when no test ran or the call itself failed."""
+        last = next((r for r in reversed(self.results) if role(r["tool"]) == "run_tests"), None)
+        if last is None or last["status"] != "done":
+            return None, None
+        text = self.outputs.get(str(last["id"]), "")
+        try:
+            data = json.loads(text)
+            passed = data["passed"]
+        except (ValueError, KeyError, TypeError):
+            return "unknown", text[:200]
+        if passed is True:
+            return "passed", []
+        if passed is False:
+            return "failed", list(data.get("failed") or [])
+        return "unknown", text[:200]
+
+    def check_memory(self, step: dict) -> str:
+        """memory_contradiction: before the first write, the draft must agree with the
+        store's active record of this issue's last triage. "go" or "end"."""
+        if "memory" in self.cleared or self.draft is None:
+            return "go"
+        label, file = parse_triage_comment(str(self.draft.get(arg("comment", "body"))))
+        file = file or "none"
+        clash = []
+        for r in self.memory:
+            found = TRIAGED.search(str(r.get("text") or ""))
+            if r.get("kind") == "episodic" and found and (found.group(1), found.group(2)) != (label, file):
+                clash.append(r)
+        if not clash:
+            self.cleared.add("memory")
+            return "go"
+        r = clash[-1]
+        self.save_state(step, current=step.get("id"))
+        decision = escalate(
+            self.ctx, signal="memory_contradiction", step=step.get("id"), action="post_comment",
+            args=self.draft,
+            attempted=f"triage issue {self.ctx.issue_number} as label {label}, file {file}: label it, open its PR, "
+                      "and post the comment",
+            why_stopped=f"the store's active record {r.get('id')} ({r.get('written_at')}) says: {r.get('text')}",
+            needs_from_human="approve to post the new triage (the record is superseded), or deny to write nothing",
+            evidence={"record": {k: r.get(k) for k in ("id", "text", "source", "written_at")}})
+        if decision == "approve":
+            self.cleared.add("memory")
+            return "go"
+        self.ended(decision, step, "the draft contradicts the memory store")
+        return "end"
 
     def filled(self, step: dict, args: dict) -> dict | None:
-        to_fill = [k for k, v in args.items() if str(v).startswith(FILL)]   # "$fill", or "$fill: a note"
+        to_fill = [k for k, v in args.items() if unfilled(v)]   # "$fill", "$fill: a note", or "$fill" inside a value
         if not to_fill:
             return args
         filled = self.fill(step, args, to_fill)
@@ -439,7 +620,7 @@ class Executor:
         schema = next((t for t in self.ctx.tools.schemas if t["name"] == step["tool"]), None)
         if schema is None:
             return None
-        fixed = {k: v for k, v in args.items() if not str(v).startswith(FILL)}
+        fixed = {k: v for k, v in args.items() if not unfilled(v)}
         props = (schema.get("input_schema") or {}).get("properties") or {}
         nullable = {k for k, s in props.items() if isinstance(s, dict) and allows_null(s)}
         for _ in range(MAX_FILL_TRIES):
@@ -452,7 +633,7 @@ class Executor:
                     self.refuse(step, call)       # the boundary: never run, always traced
                     continue
                 filled = {**{k: v for k, v in call.input.items() if k in props}, **fixed}   # the plan's values win
-                if any(k not in filled or filled[k] == "" or str(filled[k]).startswith(FILL)
+                if any(k not in filled or filled[k] == "" or unfilled(filled[k])
                        or (filled[k] is None and k not in nullable)
                        for k in keys):
                     continue
@@ -610,7 +791,8 @@ class Executor:
             self.record(step, draft, None, "held")
             self.ctx.trace.end("escalated", detail=f"the draft still failed the second pass after {MAX_ROUNDS} rounds")
             return False
-        self.draft = final
+        body = arg("comment", "body")
+        self.draft = {**final, body: with_line(str(final.get(body) or ""))}   # Part D: the disclosure, in code
         self.drafted_file = parse_triage_comment(str(final.get(arg("comment", "body"))))[1] or "none"
         return True
 

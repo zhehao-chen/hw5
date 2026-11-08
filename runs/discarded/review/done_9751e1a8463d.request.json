@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4302-s01-8a609b",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4302",
+  "branch": "repomind/issue-4302",
+  "title": "Fix decimal comma import issue for Belgian and French bank statements",
+  "body": "File: src/importers/bank_statement_importer.ts\n\nCurrently, amounts with a decimal comma (e.g., -12,50 and 1.234,56) are misinterpreted when imported, resulting in values being a hundred times too large. This change will ensure that these amounts are correctly parsed according to the Belgian and French formatting where commas are used as decimal separators."
+ },
+ "facts": {
+  "issue": 4302,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": 20.2,
+  "label": null,
+  "branch": "repomind/issue-4302",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4302,
+ "request_id": "9751e1a8463d",
+ "asked_at": "2026-11-04T04:05:23.858Z"
+}

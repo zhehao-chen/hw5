@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""bin/replay_policy FILE [--batched] [--json]
+
+Replays a recorded day of tool calls (fixtures/rollup_2026-08-04.jsonl) through RepoMind's
+autonomy policy, placing every call with the hook's own code (policy.hook.place), and
+prints how many calls land in each column, split by action class. Then the reviewer
+budget: every gated call is one prompt, and one engineer gives the gate 600 seconds a day.
+
+--batched counts prompts with one plan review per run in place (Part B, task 5): the
+classes in BATCH_COVERS are approved once, together, when the run reaches its first
+gated write of those classes, so a run that never reaches one is never asked.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from harness.formats import COLUMNS  # noqa: E402
+from policy.hook import load_policy, place  # noqa: E402
+
+BUDGET_S = 600
+# What one plan review covers: every gated write of the run. It is asked once, after the
+# comment's draft has passed the second pass and before the run's first gated write, so it
+# shows the plan, the PR (branch, base, body) and the comment exactly as they will appear.
+# A revised plan or draft crosses the gate again.
+BATCH_COVERS = ["open_pr/into_develop", "post_comment/human_active", "post_comment/human_quiet",
+                "push_commit/own_branch"]
+
+
+def replay(path: Path, batched: bool) -> dict:
+    policy = load_policy()
+    columns: dict[str, Counter] = {c: Counter() for c in COLUMNS}
+    prompts_by_run: dict[str, int] = defaultdict(int)
+    covered_runs: set[str] = set()
+    for line in path.read_text().splitlines():
+        if not line.strip():
+            continue
+        call = json.loads(line)
+        klass, column = place(call["action"], call.get("facts") or {}, policy)
+        columns[column][klass] += 1
+        if column != "requires_approval":
+            continue
+        run = call.get("run_id") or f"issue-{call.get('issue')}"
+        if batched and klass in BATCH_COVERS:
+            if run not in covered_runs:           # the one plan review for this run
+                covered_runs.add(run)
+                prompts_by_run[run] += 1
+        else:
+            prompts_by_run[run] += 1
+    prompts = sum(prompts_by_run.values())
+    out = {c: dict(sorted(columns[c].items())) for c in COLUMNS}
+    out["prompts_per_day"] = prompts
+    out["seconds_per_prompt"] = round(BUDGET_S / prompts, 1) if prompts else None
+    if batched:
+        out["covers"] = BATCH_COVERS
+    return out
+
+
+def show(out: dict, batched: bool) -> str:
+    lines = []
+    for column in COLUMNS:
+        total = sum(out[column].values())
+        lines.append(f"{column}: {total}")
+        for klass, n in out[column].items():
+            lines.append(f"  {klass:<28} {n:>4}")
+    lines.append("")
+    if batched:
+        lines.append(f"one plan review per run covers: {', '.join(out['covers'])}")
+    lines.append(f"prompts per day:    {out['prompts_per_day']}")
+    secs = out["seconds_per_prompt"]
+    lines.append(f"seconds per prompt: {secs if secs is not None else 'n/a (nothing gated)'}"
+                 f"  ({BUDGET_S} s a day / prompts)")
+    return "\n".join(lines)
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("file")
+    p.add_argument("--batched", action="store_true", help="count prompts with one plan review per run")
+    p.add_argument("--json", action="store_true", help="print one JSON object, nothing else")
+    a = p.parse_args(argv)
+    path = Path(a.file)
+    out = replay(path if path.is_absolute() else Path.cwd() / path, a.batched)
+    print(json.dumps(out) if a.json else show(out, a.batched))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

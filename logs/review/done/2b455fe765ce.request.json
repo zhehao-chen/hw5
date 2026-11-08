@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4338-s01-fd596d",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4338",
+  "branch": "repomind/issue-4338",
+  "title": "Update README to reflect missing folders in project layout",
+  "body": "File: README.md\n\nThe 'Project layout' table in the README is missing entries for four folders: `src/storage/`, `src/util/`, `config/`, and `test/`. This update will ensure that the table accurately reflects all relevant folders in the project."
+ },
+ "facts": {
+  "issue": 4338,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4338",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4338,
+ "request_id": "2b455fe765ce",
+ "asked_at": "2026-11-04T04:54:02.864Z"
+}

@@ -1,0 +1,4 @@
+{"at": "2026-11-04T03:45:30.647Z", "event": "asked", "run_id": "planned-4501-s01-4b8207", "signal": "failed_verification", "mode": "scripted:replay:fixtures/reviewers/moment_a.jsonl"}
+{"at": "2026-11-04T03:45:32.707Z", "event": "asked", "run_id": "planned-4501-s01-666cbb", "signal": "failed_verification", "mode": "scripted:approve-all"}
+{"at": "2026-11-04T05:14:16.729Z", "event": "asked", "run_id": "planned-4191-s01-c18f36", "signal": "memory_contradiction", "mode": "scripted:approve-all"}
+{"at": "2026-11-04T05:14:43.906Z", "event": "asked", "run_id": "planned-4191-s02-fcb202", "signal": "memory_contradiction", "mode": "scripted:approve-all"}

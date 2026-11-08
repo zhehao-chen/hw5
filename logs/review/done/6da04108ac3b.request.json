@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4312-s01-379a8a",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4312",
+  "branch": "repomind/issue-4312",
+  "title": "Correct the architecture overview to accurately describe the timers",
+  "body": "File: docs/ARCHITECTURE.md\n\nThe architecture overview currently states that the process runs two timers: scheduled exports and the weekly rollup. However, it also starts an hourly purge of failed uploads which is mentioned further down the document. This update ensures that the summary accurately reflects that the process actually runs three timers."
+ },
+ "facts": {
+  "issue": 4312,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4312",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4312,
+ "request_id": "6da04108ac3b",
+ "asked_at": "2026-11-04T04:23:18.248Z"
+}

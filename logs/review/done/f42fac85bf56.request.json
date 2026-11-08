@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4322-s01-f89ed1",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4322",
+  "branch": "repomind/issue-4322",
+  "title": "Add YAML keys to the configuration reference",
+  "body": "File: docs/CONFIG.md\n\nThe configuration reference currently provides environment variable names but does not specify the corresponding YAML keys used in the configuration file. Adding a column that lists the YAML keys alongside each variable will clarify the mapping and assist users in configuring the application correctly."
+ },
+ "facts": {
+  "issue": 4322,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4322",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4322,
+ "request_id": "f42fac85bf56",
+ "asked_at": "2026-11-04T04:34:40.218Z"
+}

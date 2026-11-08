@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4319-s01-44b85e",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4319",
+  "branch": "repomind/issue-4319",
+  "title": "Fix the currency code error for padded values",
+  "body": "File: src/i18n/en.json\n\nChange the error message related to currency codes to specify that leading spaces cause the issue. This will help users understand that values like \" USD\" due to padding will cause failures during import."
+ },
+ "facts": {
+  "issue": 4319,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4319",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4319,
+ "request_id": "a460320c4e8c",
+ "asked_at": "2026-11-04T04:28:40.827Z"
+}

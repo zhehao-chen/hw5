@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4334-s01-9dae1c",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4334",
+  "branch": "repomind/issue-4334",
+  "title": "Extend access token lifetime for better user experience",
+  "body": "File: docs/CONFIG.md\n\nThis change updates the `TOKEN_TTL_MINUTES` variable to a longer duration, allowing users to remain signed in for a full working day, which addresses the concern raised in issue #4334 regarding frequent sign-outs."
+ },
+ "facts": {
+  "issue": 4334,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": 38.1,
+  "label": null,
+  "branch": "repomind/issue-4334",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4334,
+ "request_id": "7ac7207fa758",
+ "asked_at": "2026-11-04T04:53:38.392Z"
+}

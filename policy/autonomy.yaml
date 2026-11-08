@@ -1,0 +1,46 @@
+# RepoMind's autonomy policy (Lecture 5, slide 51), in three columns.
+#
+# The policy places action classes: an action together with its circumstance. The hook
+# (policy/hook.py) decides each call's class from its arguments and the facts the harness
+# computed (harness/facts.py), never from what the model says. The model never sees this file.
+# The ranking behind every placement is in reports/LAB_05.md, Part A.
+
+independent:          # runs on its own
+  - read_issue
+  - search_repo
+  - read_file
+  - run_tests
+  - apply_label
+  - post_comment/agent_opened
+  - close_issue/agent_opened
+
+requires_approval:    # waits for the reviewer; no answer is never a yes
+  - post_comment/human_active
+  - post_comment/human_quiet
+  - open_pr/into_develop
+  - push_commit/own_branch
+
+prohibited:           # never runs, whoever answers, in every reviewer mode
+  - merge_pr
+  - push_commit/protected
+  - push_commit/other_branch
+  - open_pr/into_protected
+  - close_issue/human_opened
+
+classes:              # what decides each circumstance, from the facts (checks/FORMATS.md, 13.2)
+  post_comment/human_active: a person commented on the thread within the last 60 minutes (minutes_since_human_comment <= 60), whoever opened the issue
+  post_comment/agent_opened: RepoMind opened the issue (issue_opened_by_agent) and no person commented within the last 60 minutes
+  post_comment/human_quiet: a person opened the issue and nobody commented on it within the last 60 minutes
+  open_pr/into_develop: the pull request's base is develop, an unprotected branch
+  open_pr/into_protected: the pull request's base or its branch is protected (main)
+  push_commit/protected: the branch pushed to is protected (branch_protected), such as main
+  push_commit/own_branch: the branch is unprotected and RepoMind made it, the branch of its own pull request (target_created_by_agent)
+  push_commit/other_branch: the branch is unprotected and RepoMind did not make it, or the push names no branch
+  close_issue/agent_opened: RepoMind opened the issue it closes (issue_opened_by_agent)
+  close_issue/human_opened: a person opened the issue it closes
+
+escalate:             # Part C: the run stops to ask, on a named signal, before an action that cannot be undone
+  - before a push, when this run's own run_tests failed (failed_verification)
+  - before a write, when the draft contradicts an active record in the memory store (memory_contradiction)
+  - when a tool result cannot be interpreted by the harness (uninterpretable_result)
+  - when the same plan step is blocked three times (blocked_three_times)

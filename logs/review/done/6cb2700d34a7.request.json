@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4328-s01-962911",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4328",
+  "branch": "repomind/issue-4328",
+  "title": "Fix shutdown timeout issue during deploys",
+  "body": "File: src/index.ts\n\nThe current implementation sets a hard stop with a timeout of 20 seconds when shutting down. This can lead to premature termination if the HTTP server does not close in time. The proposed change will improve the shutdown procedure to ensure that running import jobs are handled properly before shutting down."
+ },
+ "facts": {
+  "issue": 4328,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4328",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4328,
+ "request_id": "6cb2700d34a7",
+ "asked_at": "2026-11-04T04:45:35.486Z"
+}

@@ -23,3 +23,8 @@ Removals are logged like additions.
 - **Removed:** the conversation from every checkpoint; the issue's own text from what memory shows a prompt
 - **Constrained:** a crashed run to resume, never restart; what is remembered to what a person stated or RepoMind derived, each with its source
 
+
+## Assignment 5
+- **Added:** an autonomy policy in three columns, placed by action class (`policy/autonomy.yaml`), enforced by a pre-call hook outside the model (`policy/hook.py`); boundaries from the inbox promoted to rules the hook reads (`policy/rules.jsonl`); a replay of a recorded day through the hook's own code (`bin/replay_policy`, with `--batched`); an approval screen of dry runs and harness facts (`policy/screen.py`) and a decisions log; escalation on four named signals with a packet, a checkpoint, a hold and a cap of three a day; a live notification before every run's first write; a stop the hook enforces, with a checkpoint and a resume that lifts it (`bin/stop`); rollback through the remote's compensations, newest first (`bin/rollback`); the disclosure line on every comment, added in code and required by the hook
+- **Removed:** autonomous merge (`merge_pr` is prohibited in every reviewer mode); the allow-all hook; any write a gated call makes without an answer (no answer holds the run); any call whose arguments still hold the plan's `$fill` template
+- **Constrained:** `post_comment` by circumstance (alone on an issue RepoMind opened, with approval on a person's thread, active or quiet); `push_commit` by branch (with approval only to RepoMind's own PR branch, prohibited to `main` or anyone else's); `open_pr` to `develop`, with approval; `close_issue` to issues RepoMind opened; every comment to carry the disclosure line

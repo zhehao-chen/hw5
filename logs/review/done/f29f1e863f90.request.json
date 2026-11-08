@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4307-s01-4e39ca",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4307",
+  "branch": "repomind/issue-4307",
+  "title": "Fix the health endpoint to report the correct version in production",
+  "body": "File: docs/triage-runbook.md\n\nUpdate the health endpoint logic to ensure it reports the correct service version instead of 'dev' on production instances."
+ },
+ "facts": {
+  "issue": 4307,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4307",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4307,
+ "request_id": "f29f1e863f90",
+ "asked_at": "2026-11-04T04:21:56.500Z"
+}

@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4301-s01-dff67c",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4301",
+  "branch": "repomind/issue-4301",
+  "title": "Fix the scheduled export failure for 'Vendor payments YTD'",
+  "body": "File: src/export/scheduler.ts\n\nThis pull request addresses the issue of the scheduled export 'Vendor payments YTD' failing since 24 October. The failure logs indicate a 'scheduled export failed' error due to 'Connection closed unexpectedly' during attachment sending. We need to investigate the cause of the connection issues and implement necessary error handling to ensure successful exports in the future."
+ },
+ "facts": {
+  "issue": 4301,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4301",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4301,
+ "request_id": "5eaa26a3ccfe",
+ "asked_at": "2026-11-04T04:05:15.504Z"
+}

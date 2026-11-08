@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4310-s01-e028f3",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4310",
+  "branch": "repomind/issue-4310",
+  "title": "Prevent creation of reports with foreign account IDs",
+  "body": "File: src/api/reports.ts\n\nImplement a check in the report creation endpoint to ensure that the provided accountId belongs to the current user, preventing the accidental creation of reports associated with accounts owned by others."
+ },
+ "facts": {
+  "issue": 4310,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4310",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4310,
+ "request_id": "787ff1dd8710",
+ "asked_at": "2026-11-04T04:22:32.160Z"
+}

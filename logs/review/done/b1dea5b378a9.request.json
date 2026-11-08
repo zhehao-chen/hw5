@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4340-s01-87cf79",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4340",
+  "branch": "repomind/issue-4340",
+  "title": "Fix for issue-4340",
+  "body": "File: README.md\n\nThis pull request addresses the issue-4340"
+ },
+ "facts": {
+  "issue": 4340,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4340",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4340,
+ "request_id": "b1dea5b378a9",
+ "asked_at": "2026-11-04T04:57:05.328Z"
+}

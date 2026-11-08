@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4313-s01-672a6f",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4313",
+  "branch": "repomind/issue-4313",
+  "title": "Fix import jobs getting stuck in running state",
+  "body": "File: src/ingest/queue.ts\n\nThe import jobs do not transition out of the 'running' state after claiming, causing them to remain stuck indefinitely. This fix will ensure that jobs are processed and their statuses are updated correctly."
+ },
+ "facts": {
+  "issue": 4313,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4313",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4313,
+ "request_id": "3e68d19a6f14",
+ "asked_at": "2026-11-04T04:24:30.290Z"
+}

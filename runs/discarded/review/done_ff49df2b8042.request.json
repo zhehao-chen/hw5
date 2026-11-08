@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4303-s01-59dc97",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4303",
+  "branch": "repomind/issue-4303",
+  "title": "Clarify row limit for CSV export feature",
+  "body": "File: $fill\n\n$fill"
+ },
+ "facts": {
+  "issue": 4303,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4303",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4303,
+ "request_id": "ff49df2b8042",
+ "asked_at": "2026-11-04T04:05:27.823Z"
+}

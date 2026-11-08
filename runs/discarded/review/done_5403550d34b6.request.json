@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4306-s01-9a4859",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4306",
+  "branch": "repomind/issue-4306",
+  "title": "Fix upload failure after CSV row correction",
+  "body": "File: src/i18n/en.json\n\nThe upload process currently fails to notify the user of the specific row causing an error, leading to confusion. We should modify the upload form to ensure it properly handles and communicates upload failures to prevent user frustration."
+ },
+ "facts": {
+  "issue": 4306,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": 42.1,
+  "label": null,
+  "branch": "repomind/issue-4306",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4306,
+ "request_id": "5403550d34b6",
+ "asked_at": "2026-11-04T04:06:33.312Z"
+}

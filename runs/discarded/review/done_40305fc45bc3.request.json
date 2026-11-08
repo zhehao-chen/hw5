@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4304-s01-4b30bc",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4304",
+  "branch": "repomind/issue-4304",
+  "title": "Fix hourly purge of failed uploads to delete expired entries",
+  "body": "File: src/ingest/worker.ts\n\nThe current hourly purge process fails due to `AccessDenied` for specific upload keys. This change will ensure that the expired uploads older than the retention period are removed correctly."
+ },
+ "facts": {
+  "issue": 4304,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4304",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4304,
+ "request_id": "40305fc45bc3",
+ "asked_at": "2026-11-04T04:05:17.857Z"
+}

@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4308-s01-c85fa8",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4308",
+  "branch": "repomind/issue-4308",
+  "title": "Update API documentation for totals endpoint to clarify units",
+  "body": "File: docs/API.md\n\nThe documentation for the `GET /reports/:id/totals` endpoint should specify that the inflow and outflow amounts are represented in cents, which are minor units for currency, and clarify that outflow values may appear as negative numbers."
+ },
+ "facts": {
+  "issue": 4308,
+  "issue_opened_by_agent": false,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4308",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4308,
+ "request_id": "a44f916dd250",
+ "asked_at": "2026-11-04T04:22:00.577Z"
+}

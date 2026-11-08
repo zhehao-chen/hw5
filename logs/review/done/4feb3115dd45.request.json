@@ -1,0 +1,26 @@
+{
+ "run_id": "planned-4323-s01-36e151",
+ "action": "open_pr",
+ "action_class": "open_pr/into_develop",
+ "args": {
+  "issue": "issue-4323",
+  "branch": "repomind/issue-4323",
+  "title": "Fix rollup failure for users with invalid time zones",
+  "body": "File: src/notifications/rollup.ts\n\nHandle cases where a user's time zone is invalid or incorrectly specified, such as \"Central Standard Time\", which causes the rollup process to fail for that user and all users after them in the list."
+ },
+ "facts": {
+  "issue": 4323,
+  "issue_opened_by_agent": true,
+  "minutes_since_human_comment": null,
+  "label": null,
+  "branch": "repomind/issue-4323",
+  "branch_protected": false,
+  "base": "develop",
+  "target_created_by_agent": true,
+  "paths": []
+ },
+ "kind": "approval",
+ "issue": 4323,
+ "request_id": "4feb3115dd45",
+ "asked_at": "2026-11-04T04:36:27.905Z"
+}
